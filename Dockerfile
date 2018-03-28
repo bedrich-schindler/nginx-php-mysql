@@ -93,6 +93,12 @@ COPY    ${NGINX_CONFIG}.conf /etc/nginx/sites-available/default
 
 STOPSIGNAL SIGTERM
 
+################
+# Expose ports #
+################
+
+EXPOSE  80 3306
+
 ###############################
 # Configure working directory #
 ###############################
