@@ -85,7 +85,22 @@ RUN     apt update -y \
 # Copy configuration files #
 ############################
 
-COPY    ${NGINX_CONFIG}.conf /etc/nginx/sites-available/default
+COPY    ./nginx/${NGINX_CONFIG}.conf /etc/nginx/sites-available/default
+
+COPY    ./mysql/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+COPY    ./mysql/setup.sql /root/setup.sql
+
+###################
+# Configure mysql #
+###################
+
+RUN     usermod -d /var/lib/mysql/ mysql \
+        && chown -R mysql: /var/lib/mysql/ \
+
+        && service mysql start \
+        && mysql --user=root --password=pass < /root/setup.sql \
+        && rm /root/setup.sql \
+        && service mysql stop
 
 #########################
 # Configure stop signal #
