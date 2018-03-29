@@ -20,6 +20,7 @@ RUN     apt update -y \
             git \
             nano \
             wget \
+            sshpass \
 
 ####################
 # Add repositories #
