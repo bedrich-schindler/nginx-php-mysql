@@ -26,6 +26,7 @@ RUN apt install -y \
         software-properties-common \
         curl \
         git \
+        rsync \
         nano \
         wget \
         sshpass
